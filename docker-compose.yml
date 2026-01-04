@@ -48,11 +48,13 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_API_URL=http://46.224.4.80:8000
+        # For local development, use localhost. For server deployment, change to your server IP/domain
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_API_URL=http://46.224.4.80:8000
+      # For local development, use localhost. For server deployment, change to your server IP/domain
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
     depends_on:
       - backend
     restart: unless-stopped
